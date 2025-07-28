@@ -1,0 +1,42 @@
+{    
+  "NHS_number_is_valid": {
+        "description": "NHS Number is valid",
+        "type": "select",
+        "parameter_descriptions": {
+            "entity": "The entity to check",
+            "nhs_number_column": "The nhs number column",
+            "decision_to_admit_column": "", 
+            "nhs_number_status_indicator_column" : "" ,
+            "witheld_identity_reason_column" : ""
+        },
+        "rule_config": {
+            "entity": "{{ entity }}",
+            "expression": "nhsnumber_mod11_check({{ nhs_number_column }}) AND NOT sensitive_legally_restricted( {{ decision_to_admit_column }}, {{nhs_number_status_indicator_column}} , {{ witheld_identity_reason_column }}) as {{ nhs_number_column }}_validation",
+            "failure_type": "submission",
+            "failure_message": "{{ nhs_number_column }} validation failed",
+            "error_code": "1247",
+            "reporting_field": ["{{ nhs_number_column }}"],
+            "category": "Bad value"
+        }
+    }
+"postcode_is_valid": {
+        "description": "NHS Number is valid",
+        "type": "select",
+        "parameter_descriptions": {
+            "entity": "The entity to check",
+            "nhs_number_column": "The nhs number column",
+            "decision_to_admit_column": "", 
+            "nhs_number_status_indicator_column" : "" ,
+            "witheld_identity_reason_column" : ""
+        },
+        "rule_config": {
+            "entity": "{{ entity }}",
+            "expression": "nhsnumber_mod11_check({{ nhs_number_column }}) AND NOT sensitive_legally_restricted( {{ decision_to_admit_column }}, {{nhs_number_status_indicator_column}} , {{ witheld_identity_reason_column }}) as {{ nhs_number_column }}_validation",
+            "failure_type": "submission",
+            "failure_message": "{{ nhs_number_column }} validation failed",
+            "error_code": "1247",
+            "reporting_field": ["{{ nhs_number_column }}"],
+            "category": "Bad value"
+        }
+    }
+}
