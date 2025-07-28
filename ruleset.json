@@ -1,0 +1,19 @@
+{    
+  "NHS_number_is_valid": {
+        "description": "NHS Number is valid",
+        "type": "select",
+        "parameter_descriptions": {
+            "entity": "The entity to check",
+            "nhs_number_column": "The nhs number column"
+        },
+        "rule_config": {
+            "entity": "{{ entity }}",
+            "expression": "nhsno_mod11_check({{ nhs_number_column }}) as {{ nhs_number_column }}_validation",
+            "failure_type": "submission",
+            "failure_message": "{{ nhs_number_column }} validation failed",
+            "error_code": "1247",
+            "reporting_field": ["{{ nhs_number_column }}"],
+            "category": "Bad value"
+        }
+    }
+}
