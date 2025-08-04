@@ -1,0 +1,39 @@
+{    
+  "NHS_number_is_valid": {
+        "description": "NHS Number validity rule",
+        "operation": "select",
+        "parameter_descriptions": {
+            "entity": "The table name to run the validation on",
+            "nhs_number": "The nhs number column name",
+        },
+        "rule_config": {
+            "entity": "{{ entity }}",
+            "expression": "{{ nhs_number }} is not NULL AND nhsnumber_mod11_check({{ nhs_number }}) AND NOT IN ('0000000000','1111111111','2222222222','3333333333','4444444444','5555555555','6666666666','7777777777','8888888888','9999999999','1000000001','2000000002','3000000003','4000000004','5000000005','6000000006','7000000007','8000000008','9000000009') as {{ nhs_number }}_valid",
+            "failure_type": "submission",
+            "failure_message": "{{ nhs_number }} validation failed",
+            "error_code": "1247",
+            "reporting_field": ["{{ nhs_number }}"],
+            "category": "Bad value"
+        }
+    }
+"NHS_number_is_complete": {
+        "description": "NHS Number completeness rule",
+        "type": "select",
+        "parameter_descriptions": {
+            "entity": "The table name to run the validation on",
+            "nhs_number": "The nhs number column name",
+            "decision_to_admit": "The decision to admin column name", 
+            "nhs_number_status_indicator" : "The nhs number status indicator column name" ,
+            "witheld_identity_reason" : "The withheld identity reason column name"
+        },
+        "rule_config": {
+            "entity": "{{ entity }}",
+            "expression": "{{ nhs_number }} is not NULL AND NOT sensitive_legally_restricted( {{ decision_to_admit }}, {{nhs_number_status_indicator }} , {{ witheld_identity_reason }}) as {{ nhs_number }}_complete",
+            "failure_type": "submission",
+            "failure_message": "{{ nhs_number }} completeness failed",
+            "error_code": "1247",
+            "reporting_field": ["{{ nhs_number }}"],
+            "category": "Bad value"
+        }
+    }
+}
