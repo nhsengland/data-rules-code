@@ -1,6 +1,6 @@
 {    
-  "NHS_number_is_valid": {
-        "description": "NHS Number validity rule",
+  "CDS_RULE_CODE_020_NHS NUMBER_VR": {
+        "description": "CDS OP NHS Number validity rule",
         "operation": "select",
         "parameter_descriptions": {
             "entity": "The table name to run the validation on",
@@ -16,8 +16,8 @@
             "category": "Bad value"
         }
     }
-"NHS_number_is_complete": {
-        "description": "NHS Number completeness rule",
+"CDS_RULE_CODE_020_NHS NUMBER_CR": {
+        "description": "CDS OP NHS Number completeness rule",
         "type": "select",
         "parameter_descriptions": {
             "entity": "The table name to run the validation on",
